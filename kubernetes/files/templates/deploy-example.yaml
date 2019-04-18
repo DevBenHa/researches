@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nombre-del-POD
+  labels:
+    app: tag-app-pod
+spec:
+  replicas: 1 #numero replicas
+  selector: 
+    matchLabels:
+      app: tag-pod
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: tag-app-pod
+    spec:
+      containers:
+        - image: gcr.io/desarrollo-mobid/nombre-imagen #En este caso es la ruta del container registry de GCP
+          name: nombre-container
+          ports:
+            - containerPort: 8080 #puerto contenedor
+              name: nombre-puerto
+          volumeMounts:
+            - name: nombre-del-volumen(declarado abajo en "volumes")
+              mountPath: /ruta/montaje/volumen
+      volumes:
+        - name: nombre-volumen
+          persistentVolumeClaim:
+            claimName: nombre-claim-volumen
+        - name: nombre-volumen2
+          persistentVolumeClaim:
+            claimName: nombre-claim-pvc2
