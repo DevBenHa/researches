@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Deployment-name
+  labels:
+    app: account-t
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-t
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: account-t
+    spec:
+      containers:
+        - image: gcr.io/project/name #gcp container registry
+          name: account-t
+          ports:
+            - containerPort: 8080
+              name: account-t
+          volumeMounts:
+            - name: app-props #nombre del volumen 
+              mountPath: /cluster-data/apps/account/properties
+      volumes:
+        - name: app-props
+          configMap:
+            name: properties
+            items:
+            - key: application.properties
+              path: application.properties
+            - key: config.properties
+              path: config.properties
+            - key: log4j2.properties
+              path: log4j2.properties
+            - key: msg.properties
+              path: msg.properties
