@@ -1,0 +1,6 @@
+cl/mobid/logback_test2/Controller/Controlador.class
+cl/mobid/logback_test2/App.class
+cl/mobid/logback_test2/InitBean.class
+cl/mobid/logback_test2/util/GCPCloudLoggingJSONLayout.class
+cl/mobid/logback_test2/util/GCPCloudLoggingJSONLayout$GCPCloudLoggingEvent$GCPCloudLoggingTimestamp.class
+cl/mobid/logback_test2/util/GCPCloudLoggingJSONLayout$GCPCloudLoggingEvent.class
