@@ -8,43 +8,48 @@ Como desplegar una aplicacion java en kubernetes engine
  
  Desde una terminal con acceso a nuestro cluster (y con kubectl ya instalado)
  
- ``` terminal
+ ``` bash
   git clone https://github.com/DevBenHa/researches.git
   cd researches/kubernetes/java-logback-project/
   kubectl create configmap nombre-configmap --from-file=config-files/
 ```
-  
+ 
  Crear el archivo de despliegue con extención .yaml:
 
 ``` yaml
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nombre-disco-persistente
+  name: Deployment-name
+  labels:
+    app: tag-app
 spec:
-  storageClassName: ""
-  capacity:
-    storage: 10G #tamaño del volumen
-  accessModes:
-    - ReadWriteMany
-  gcePersistentDisk:
-    pdName: pd-cluster #nombre del disco persistente alojado en GCP (google cloud)
-    fsType: ext4
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nombre-volumen-claim
-spec:
-  # It's necessary to specify "" as the storageClassName
-  # so that the default storage class won't be used, see
-  # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
-  storageClassName: ""
-  volumeName: nombre-persistentVolume #en este caso "nombre-disco-persistente"
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10G #tamaño a utilizar a partir del persistentVolume
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tag-app
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: tag-app
+    spec:
+      containers:
+        - image: gcr.io/project/name #gcp container registry
+          name: nombre-container
+          ports:
+            - containerPort: 8080
+              name: nombre-al-puerto
+          volumeMounts:
+            - name: app-props #nombre del volumen 
+              mountPath: /cluster-data/apps/account/properties
+      volumes:
+        - name: app-props
+          configMap:
+            name: nombre-configmap
+            items:
+            - key: nombrearchivo.extension
+              path: nombrearchivo.extencion # cómo se verá el archivo en el directorio
+
 ```
 
