@@ -1,11 +1,19 @@
 java-logback-project
 ===================== 
-Como desplegar
---------------------
- Crear el ConfigMap
-  - cd 
-  - kubectl create configmap nombre-configmap --from-file=ruta/directorio/properties-o-xml/
+
+Como desplegar una aplicacion java en kubernetes engine
+--------------------------------------------------------
+
+ Asumiendo que el [cluster ya ha sido creado](https://github.com/DevBenHa/researches/blob/master/kubernetes/files/Como-crear-un-cluster-en-kubernetes-engine.pdf)
  
+ Desde una terminal con acceso a nuestro cluster (y con kubectl ya instalado)
+ 
+ ``` terminal
+  git clone https://github.com/DevBenHa/researches.git
+  cd researches/kubernetes/java-logback-project/
+  kubectl create configmap nombre-configmap --from-file=config-files/
+```
+  
  Crear el archivo de despliegue con extención .yaml:
 
 ``` yaml
@@ -39,6 +47,4 @@ spec:
     requests:
       storage: 10G #tamaño a utilizar a partir del persistentVolume
 ```
-``` terminal
-  git clone https://github.com/DevBenHa/researches.git
-```
+
