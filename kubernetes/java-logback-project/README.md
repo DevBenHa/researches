@@ -128,7 +128,7 @@ kubectl logs nombre-del-pod
 
 Para ver los logs que se generaron al generar el deploy de la aplicación.
 
----------------------------------------------------------------------------
-# Monitoreo
-
+--------------------------------------------------------------------------- 
+Monitoreo
+---------------
 Para ver los logs del POD en tiempo real 
