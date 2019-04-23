@@ -1,5 +1,21 @@
 java-logback-project
 ===================== 
+Como crear una imagen de Docker y subirla al Container Registry
+--------------------------------------------------------
+
+Desde este proyecto (y teniendo instalado Docker en nuestro pc)
+
+Nos paramos en el directorio donde está el archivo Dockerfile
+Si ya tenemos [conigurado el software necesario](https://github.com/DevBenHa/researches/wiki/Documentación#software-necesario-para-trabajar-hay-que-instalarlo)
+
+``` bash
+cd kubernetes/java-logback-project/
+docker build -t nombreImagen .
+docker images
+docker tag IDimagen gcr.io/nombre-projecto/nombreImagen
+docker push gcr.io/nombre-projecto/nombreImagen
+
+```
 
 Como desplegar una aplicacion java en kubernetes engine
 --------------------------------------------------------
@@ -13,6 +29,8 @@ Como desplegar una aplicacion java en kubernetes engine
   cd researches/kubernetes/java-logback-project/
   kubectl create configmap nombre-configmap --from-file=config-files/
 ```
+ Con esto hemos creado el configmap el cual contiene todas las configuraciones necesarias para nuestro proyecto de ejemplo
+ 
  
  Crear el archivo de despliegue con extención .yaml:
 
@@ -52,4 +70,17 @@ spec:
               path: nombrearchivo.extencion # cómo se verá el archivo en el directorio
 
 ```
+Cabe destacar que se pueden montar más de un configmap y en distintas rutas de ser necesario.
+Un configmap puede representar:
+  - Un directorio con archivos de configuración
+  - Un archivo de configuración individual
+  
+  [Referencia](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
+  
+  Esto tambien aplica para el montaje de volúmenes persistentes.
+```bash
 
+kubectl create -f nombreDeploy.yaml
+kubectl get pods
+
+```
