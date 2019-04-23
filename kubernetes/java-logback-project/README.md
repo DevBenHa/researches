@@ -6,16 +6,35 @@ Como crear una imagen de Docker y subirla al Container Registry
 Desde este proyecto (y teniendo instalado Docker en nuestro pc)
 
 Nos paramos en el directorio donde está el archivo Dockerfile
+
 Si ya tenemos [conigurado el software necesario](https://github.com/DevBenHa/researches/wiki/Documentación#software-necesario-para-trabajar-hay-que-instalarlo)
 
 ``` bash
 cd kubernetes/java-logback-project/
 docker build -t nombreImagen .
 docker images
-docker tag IDimagen gcr.io/nombre-projecto/nombreImagen
-docker push gcr.io/nombre-projecto/nombreImagen
 
 ```
+Hasta aqui se ha creado una imagen de docker alojada localmente.
+
+Para subirla a Google Container Registry, es necesario primero añadir un tag específico a nuestra imagen y posteriormente hacer un push a la nube.
+
+```bash
+docker tag [ID_Imagen] [HOSTNAME]/[PROJECT-ID]/[IMAGE]
+docker push [HOSTNAME]/[PROJECT-ID]/[IMAGE]
+
+```
+
+Donde [HOSTNAME] corresponde a la región de GCP donde será alojada la imagen.
+Existen 4 tipos de Hostname:
+  - gcr.io (recomiendo este)
+  - us.gcr.io
+  - eu.gcr.io
+  - asia.gcr.io
+
+El [PROJECT-ID] corresponde al ID que GCP otorga al projecto de 
+
+Referencia sobre  [como subir una imagen a Google Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
 
 Como desplegar una aplicacion java en kubernetes engine
 --------------------------------------------------------
