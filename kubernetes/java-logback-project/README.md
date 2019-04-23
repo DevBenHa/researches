@@ -40,7 +40,7 @@ Existen 4 tipos de Hostname:
 
 Referencia sobre  [como subir una imagen a Google Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
 
-Como desplegar una aplicacion java en kubernetes engine
+Como desplegar una aplicacion java, contenida en una imagen de docker, en kubernetes engine
 --------------------------------------------------------
 
  Asumiendo que el [cluster ya ha sido creado](https://github.com/DevBenHa/researches/blob/master/kubernetes/files/Como-crear-un-cluster-en-kubernetes-engine.pdf)
@@ -76,8 +76,8 @@ spec:
         app: tag-app
     spec:
       containers:
-        - image: gcr.io/project/name #gcp container registry
-          name: nombre-container
+        - image: gcr.io/project/name #imagen alojada en container registry
+          name: nombre-container # nombre para el contenedor
           ports:
             - containerPort: 8080
               name: nombre-al-puerto
@@ -89,11 +89,12 @@ spec:
           configMap:
             name: nombre-configmap
             items:
-            - key: nombrearchivo.extension
+            - key: nombrearchivo.extension #nombre del archivo dentro del configmap
               path: nombrearchivo.extencion # cómo se verá el archivo en el directorio
 
 ```
 Cabe destacar que se pueden montar más de un configmap y en distintas rutas de ser necesario.
+
 Un configmap puede representar:
   - Un directorio con archivos de configuración
   - Un archivo de configuración individual
@@ -107,3 +108,27 @@ kubectl create -f nombreDeploy.yaml
 kubectl get pods
 
 ```
+
+Para chequear si el contenedor se desplegó de manera correcta, ejecutar el comando:
+
+``` bash
+kubectl get pods
+
+```
+
+Si el STATUS del POD indica alguna acción distinta de "Running"
+
+Ejecutar:
+
+``` bash
+kubectl describe pod nombre-del-pod
+kubectl logs nombre-del-pod
+
+```
+
+Para ver los logs que se generaron al generar el deploy de la aplicación.
+
+---------------------------------------------------------------------------
+# Monitoreo
+
+Para ver los logs del POD en tiempo real 
