@@ -25,14 +25,18 @@ docker push [HOSTNAME]/[PROJECT-ID]/[IMAGE]
 
 ```
 
-Donde [HOSTNAME] corresponde a la región de GCP donde será alojada la imagen.
+* [HOSTNAME] corresponde a la región de GCP donde será alojada la imagen.
 Existen 4 tipos de Hostname:
   - gcr.io (recomiendo este)
   - us.gcr.io
   - eu.gcr.io
   - asia.gcr.io
 
-El [PROJECT-ID] corresponde al ID que GCP otorga al projecto de 
+* [PROJECT-ID] corresponde al ID que GCP otorga al projecto de GCP.
+
+* [IMAGE] corresponde al nombre, asignado por usted mismo, de la imagen para identificarla.
+
+
 
 Referencia sobre  [como subir una imagen a Google Container Registry](https://cloud.google.com/container-registry/docs/pushing-and-pulling)
 
