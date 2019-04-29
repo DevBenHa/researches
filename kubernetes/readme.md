@@ -31,6 +31,8 @@
 * Secrets
     - [Documentacion kubernetes](https://kubernetes.io/docs/concepts/configuration/secret/)
     - [Documentación Google](https://cloud.google.com/kubernetes-engine/docs/concepts/secret)
+* Asignacion de recursos (cpu y RAM)
+    - [Documentacion kubernetes](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#resource-types)
 * Ref
     - [Como crear un cluster desde la consola de Google](https://github.com/DevBenHa/researches/blob/master/kubernetes/files/Como-crear-un-cluster-en-kubernetes-engine.pdf)
 # Config Maps
@@ -67,8 +69,8 @@ Ejemplo de archivo YML de configmap
  * ...
 
 # Monitoreo
- * Google Stackdriver
+ * [Google Stackdriver](https://cloud.google.com/stackdriver/docs/)
 # Reporte de errores
- * Google Error reporter
+ * [Google Error reporter](https://cloud.google.com/error-reporting/docs/)
 # Ejemplos:
   * https://codelabs.developers.google.com/codelabs/cloud-springboot-kubernetes/#0 
