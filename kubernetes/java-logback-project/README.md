@@ -7,7 +7,7 @@ Desde este proyecto (y teniendo instalado Docker en nuestro pc)
 
 Nos paramos en el directorio donde está el archivo Dockerfile
 
-Si ya tenemos [conigurado el software necesario](https://github.com/DevBenHa/researches/wiki/Documentación#software-necesario-para-trabajar-hay-que-instalarlo)
+Si ya tenemos [configurado el software necesario](https://github.com/DevBenHa/researches/wiki/Documentación#software-necesario-para-trabajar-hay-que-instalarlo)
 
 ``` bash
 cd kubernetes/java-logback-project/
